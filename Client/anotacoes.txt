@@ -1,0 +1,2 @@
+- o contrutor de um componente é executado antes do NgOnInit.
+
