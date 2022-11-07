@@ -5,10 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers
 {
-    [ApiController]
-    //-a rota deve começar com 'api/' seguida do nome do 'controller'.
-    [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseApiController
     {
         private readonly DataContext _context;
 
@@ -17,8 +14,6 @@ namespace Api.Controllers
         {
             _context= context;
         }
-
-
 
         [HttpGet]
         //-método que será executado quando for feito um 'get' no endpoint do controller.
