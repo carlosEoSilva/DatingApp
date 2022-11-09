@@ -1,5 +1,11 @@
 using Api.Data;
+using Api.Interfaces;
+using Api.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Api.Extensions;
 
 namespace API
 {
@@ -16,19 +22,15 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //-nesse momento é estabelecida a conexão com o banco.
-            services.AddDbContext<DataContext>(options => 
-            {
-                //-'connection string' foi definida no 'appsettings.Development.json'
-                //-a 'connection string' possui o nome do arquivo de banco de dados.
-                //-busca o valor de 'DefaultConnection' dentro do arquivo 'appsettings.Development.json'.
-                options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
-            });
+            //-método de extensão
+            services.AddApplicationServices(_config);
+
+            //-método de extensão
+            services.AddIdentityServices(_config);
 
             services.AddControllers();
 
             services.AddCors();
-           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +49,8 @@ namespace API
             //-configurar o 'cors' para aceitar qualquer tipo de header, qualquer tipo de método(get,post,etc), da origem especificada com o 'WithOrigins'.
             app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
+            app.UseAuthorization();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
