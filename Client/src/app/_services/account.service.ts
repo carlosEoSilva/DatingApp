@@ -17,7 +17,7 @@ export class AccountService {
   private currentUserSource= new ReplaySubject<User>(1);
 
   //-variável do tipo observable que vai receber o valor armazenado no buffer currentUserSource.
-  currentUser$= this.currentUserSource.asObservable;
+  currentUser$= this.currentUserSource.asObservable();
 
   //-a resposta da api é um 'UserDto'.
   login(model:any){
@@ -31,6 +31,19 @@ export class AccountService {
           //-armazenar no buffer o usuário logado.
           this.currentUserSource.next(user);
         }
+      })
+    )
+  }
+
+  register(model:any){
+    return this.http.post(this.baseUrl + "account/register", model)
+    .pipe(
+      map((user:User)=>{
+        if(user){
+          localStorage.setItem('user',JSON.stringify(user));
+          this.currentUserSource.next(user);
+        }
+        return user;
       })
     )
   }
