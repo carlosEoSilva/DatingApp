@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -7,8 +8,11 @@ import { AccountService } from '../_services/account.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  constructor(private accountService:AccountService) { }
-  ngOnInit(): void { }
+  constructor(
+    private accountService:AccountService, 
+    private toastr:ToastrService) { }
+  
+    ngOnInit(): void { }
 
   //-o input é usado para receber valores de componentes filhos.
   // @Input() usersFromHomeComponent:any;
@@ -24,7 +28,10 @@ export class RegisterComponent implements OnInit {
         console.log(response);
         this.cancel();
       },
-      error: error => console.error(error)
+      error: error => {
+        console.error(error);
+        this.toastr.error(error.error);
+      }
     });
 
     //-o .subscribe pode estar vazio, mas sem ele não acontece nada.
