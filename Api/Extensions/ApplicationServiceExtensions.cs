@@ -12,6 +12,8 @@ namespace Api.Extensions
         {
             services.AddScoped<ITokenService, TokenService>();
 
+            services.AddScoped<IUserRepository, UserRepository>();
+
             //-nesse momento é estabelecida a conexão com o banco.
             services.AddDbContext<DataContext>(options => 
             {

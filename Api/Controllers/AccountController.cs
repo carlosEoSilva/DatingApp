@@ -72,6 +72,7 @@ namespace Api.Controllers
                     return Unauthorized("Invalid password");
                 }
             }
+            
             return new UserDto
             {
                 Username= user.UserName,

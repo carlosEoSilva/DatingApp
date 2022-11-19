@@ -1,10 +1,3 @@
-using Api.Data;
-using Api.Interfaces;
-using Api.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Api.Extensions;
 using Api.Middleware;
 
@@ -48,7 +41,7 @@ namespace API
             //-configurar o 'cors' para aceitar qualquer tipo de header, qualquer tipo de método(get,post,etc), da origem especificada com o 'WithOrigins'.
             app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
-            app.UseAuthorization();
+            app.UseAuthentication();
             
             app.UseAuthorization();
 
