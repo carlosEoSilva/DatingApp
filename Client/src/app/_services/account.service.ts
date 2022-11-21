@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, ReplaySubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -10,7 +11,8 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl= "https://localhost:5001/api/";
+  //-a 'baseUrl' foi definida no arquivo 'environment.ts'.
+  baseUrl= environment.apiUrl;
   
   //-funciona como um buffer, quando é feito um subscribe, ele retorna a quantidade prédeterminada de valores armazenados automáticamente.
   //-neste caso o buffer é 1.
