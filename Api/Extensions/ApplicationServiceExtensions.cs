@@ -1,5 +1,6 @@
 
 using Api.Data;
+using Api.Helpers;
 using Api.Interfaces;
 using Api.Services;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,8 @@ namespace Api.Extensions
             services.AddScoped<ITokenService, TokenService>();
 
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
             //-nesse momento é estabelecida a conexão com o banco.
             services.AddDbContext<DataContext>(options => 

@@ -62,3 +62,5 @@ C:\Users\carlos.silva0000\Documents\a-pasta-trabalho\cursos\Udemy\Csharp\WebApi\
 C:\Users\carlos.silva0000\Documents\a-pasta-trabalho\cursos\Udemy\Csharp\WebApi\DatingApp\Api\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\carlos.silva0000\Documents\a-pasta-trabalho\cursos\Udemy\Csharp\WebApi\DatingApp\Api\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\carlos.silva0000\Documents\a-pasta-trabalho\cursos\Udemy\Csharp\WebApi\DatingApp\Api\bin\Debug\net6.0\Data\UserSeedData.json
+C:\Users\carlos.silva0000\Documents\a-pasta-trabalho\cursos\Udemy\Csharp\WebApi\DatingApp\Api\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\carlos.silva0000\Documents\a-pasta-trabalho\cursos\Udemy\Csharp\WebApi\DatingApp\Api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
