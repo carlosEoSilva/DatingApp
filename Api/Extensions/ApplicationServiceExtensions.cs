@@ -11,11 +11,16 @@ namespace Api.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
+            services.AddCors();
+
             services.AddScoped<ITokenService, TokenService>();
 
             services.AddScoped<IUserRepository, UserRepository>();
 
-            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            //-Primeira abordagem
+            // services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             //-nesse momento é estabelecida a conexão com o banco.
             services.AddDbContext<DataContext>(options => 

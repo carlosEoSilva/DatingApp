@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\carlos.silva0000\\Documents\\a-pasta-trabalho\\cursos\\Udemy\\Csharp\\WebApi\\DatingApp\\Api\\Api.csproj": {}
+    "c:\\Users\\carlos.silva0000\\Documents\\a-pasta-trabalho\\cursos\\Udemy\\Csharp\\WebApi\\DatingApp\\Api\\Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\carlos.silva0000\\Documents\\a-pasta-trabalho\\cursos\\Udemy\\Csharp\\WebApi\\DatingApp\\Api\\Api.csproj": {
+    "c:\\Users\\carlos.silva0000\\Documents\\a-pasta-trabalho\\cursos\\Udemy\\Csharp\\WebApi\\DatingApp\\Api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\carlos.silva0000\\Documents\\a-pasta-trabalho\\cursos\\Udemy\\Csharp\\WebApi\\DatingApp\\Api\\Api.csproj",
+        "projectUniqueName": "c:\\Users\\carlos.silva0000\\Documents\\a-pasta-trabalho\\cursos\\Udemy\\Csharp\\WebApi\\DatingApp\\Api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "C:\\Users\\carlos.silva0000\\Documents\\a-pasta-trabalho\\cursos\\Udemy\\Csharp\\WebApi\\DatingApp\\Api\\Api.csproj",
+        "projectPath": "c:\\Users\\carlos.silva0000\\Documents\\a-pasta-trabalho\\cursos\\Udemy\\Csharp\\WebApi\\DatingApp\\Api\\Api.csproj",
         "packagesPath": "C:\\Users\\carlos.silva0000\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\carlos.silva0000\\Documents\\a-pasta-trabalho\\cursos\\Udemy\\Csharp\\WebApi\\DatingApp\\Api\\obj\\",
+        "outputPath": "c:\\Users\\carlos.silva0000\\Documents\\a-pasta-trabalho\\cursos\\Udemy\\Csharp\\WebApi\\DatingApp\\Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\carlos.silva0000\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -21,9 +21,7 @@
           "net6.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://consinco.pkgs.visualstudio.com/_packaging/consinco-nuget/nuget/v3/index.json": {},
-          "https://www.myget.org/F/tnf/api/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -44,6 +42,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.0, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.20.0, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
