@@ -6,6 +6,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { HttpClientModule} from '@angular/common/http';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { NgxSpinnerModule } from "ngx-spinner";
+
+//-não esquecer de exportar os módulos que forem ser usados.
 
 @NgModule({
   declarations: [],
@@ -13,16 +16,22 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
     CommonModule,
     HttpClientModule, 
     NgxGalleryModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-clip-rotate-pulse' }),
     TooltipModule.forRoot(),
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
-    ToastrModule.forRoot({positionClass:'toast-bottom-right'})
+    ToastrModule.forRoot({
+      positionClass:'toast-bottom-right',
+      preventDuplicates: true,
+      timeOut: 2000
+    })
   ],
   exports:[
     BsDropdownModule,
     ToastrModule,
     TabsModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    NgxSpinnerModule
   ]
 })
 export class SharedModule { }

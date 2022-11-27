@@ -26,6 +26,7 @@
               "./node_modules/font-awesome/css/font-awesome.css",
               "./node_modules/ngx-toastr/toastr.css",
               "./node_modules/bootswatch/dist/cerulean/bootstrap.css",
+              "node_modules/ngx-spinner/animations/ball-clip-rotate-pulse.css",
               "src/styles.css"
             ],
             "scripts": []

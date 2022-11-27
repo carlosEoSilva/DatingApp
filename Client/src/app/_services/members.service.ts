@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_models/member';
 
@@ -7,18 +8,48 @@ import { Member } from '../_models/member';
   providedIn: 'root'
 })
 export class MembersService {
+  baseUrl= environment.apiUrl;
+  members:Member[]= [];
 
   constructor(private http: HttpClient) { }
 
-  baseUrl= environment.apiUrl;
-
+  //-todos os métodos retornam um observable
   getMembers(){
-    return this.http.get<Member[]>(this.baseUrl + "users");
+    if(this.members.length > 0){
+      //-o retorno do serviço tem que ser um 'observable', por isso tem que usar o 'of', 
+      //-ele transforma a resposta em um 'observable'
+      return of(this.members);
+    }
+    else{
+      return this.http.get<Member[]>(this.baseUrl + "users")
+      .pipe(
+        map(members=>{
+          this.members= members;
+          return members;
+        })
+      );
+    }
   }
 
   getMember(username:string){
-    return this.http.get<Member>(this.baseUrl + "users/" + username);
+    const member= this.members.find(x=> x.userName === username);
+    
+    if(member){
+      return of(member);
+    }
+    else{
+      return this.http.get<Member>(this.baseUrl + "users/" + username); 
+    }
   }
 
+  updateMember(member:Member){
+    return this.http.put(this.baseUrl + 'users', member)
+    .pipe(
+      map(()=>{
+        const index= this.members.indexOf(member);
+        this.members[index]= {...this.members[index], ...member}
+      })
+    );
+  }
 
 }
