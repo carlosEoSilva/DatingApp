@@ -1,4 +1,3 @@
-
 using Api.Data;
 using Api.Helpers;
 using Api.Interfaces;
@@ -17,10 +16,14 @@ namespace Api.Extensions
 
             services.AddScoped<IUserRepository, UserRepository>();
 
+            services.AddScoped<IPhotoService, PhotoService>();
+
             //-Primeira abordagem
             // services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
-
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            //-o 'config.Getsection' busca a configuração do campo 'CloudinarySettings' no arquivo 'appsettings.json'.
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
 
             //-nesse momento é estabelecida a conexão com o banco.
             services.AddDbContext<DataContext>(options => 
