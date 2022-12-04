@@ -28,10 +28,7 @@ export class AccountService {
       map((response:User)=>{
         const user= response;
         if(user){
-          //-o 'user' é o nome da chave que será armazenada no localStorage, o valor da chave é JSON.stringify(user).
-          localStorage.setItem('user', JSON.stringify(user));
-          //-armazenar no buffer o usuário logado.
-          this.currentUserSource.next(user);
+          this.setCurrentUser(user);
         }
       })
     )
@@ -42,8 +39,7 @@ export class AccountService {
     .pipe(
       map((user:User)=>{
         if(user){
-          localStorage.setItem('user',JSON.stringify(user));
-          this.currentUserSource.next(user);
+          this.setCurrentUser(user);          
         }
         return user;
       })
@@ -51,6 +47,9 @@ export class AccountService {
   }
 
   setCurrentUser(user:User){
+    //-o 'user' é o nome da chave que será armazenada no localStorage, o valor da chave é JSON.stringify(user).
+    localStorage.setItem('user', JSON.stringify(user));
+    //-armazenar no buffer o usuário logado.
     this.currentUserSource.next(user);
   }
 

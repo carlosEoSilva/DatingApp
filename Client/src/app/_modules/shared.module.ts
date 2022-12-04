@@ -7,6 +7,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { HttpClientModule} from '@angular/common/http';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { FileUploadModule } from 'ng2-file-upload';
 
 //-não esquecer de exportar os módulos que forem ser usados.
 
@@ -16,6 +17,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     CommonModule,
     HttpClientModule, 
     NgxGalleryModule,
+    FileUploadModule,
     NgxSpinnerModule.forRoot({ type: 'ball-clip-rotate-pulse' }),
     TooltipModule.forRoot(),
     TabsModule.forRoot(),
@@ -31,7 +33,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ToastrModule,
     TabsModule,
     NgxGalleryModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FileUploadModule
   ]
 })
 export class SharedModule { }

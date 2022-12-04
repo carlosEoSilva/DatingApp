@@ -45,7 +45,7 @@ namespace Api.Data
                 .SingleOrDefaultAsync(x => x.UserName == username);
         }
 
-        public async  Task<IEnumerable<AppUser>> GetUsersAsync()
+        public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
             return await _context.Users
                 .Include(p => p.Photos)

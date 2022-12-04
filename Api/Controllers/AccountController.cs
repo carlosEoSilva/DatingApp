@@ -54,7 +54,11 @@ namespace Api.Controllers
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             //-foi usado o 'SingleOrDefaultAsync' porque 'UserName' não é chave primária.
-            var user= await _context.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
+            //-o '.Include' é para fazer a junção com as tabelas relacionadas e adicionar o resultado na resposta da query.
+            var user= 
+                await _context.Users
+                .Include(p => p.Photos)
+                .SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
 
             if(user == null)
             {
@@ -72,11 +76,14 @@ namespace Api.Controllers
                     return Unauthorized("Invalid password");
                 }
             }
+
+            Console.WriteLine(user.Photos);
             
             return new UserDto
             {
                 Username= user.UserName,
-                Token= _tokenService.CreateToken(user)
+                Token= _tokenService.CreateToken(user),
+                PhotoUrl= user.Photos.FirstOrDefault(x=> x.IsMain)?.Url
             };
         }
 
