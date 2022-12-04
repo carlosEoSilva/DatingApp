@@ -13,6 +13,11 @@ import { AccountService } from '../_services/account.service';
   providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
 export class NavComponent implements OnInit {
+  model:any= {};
+  //-o valor padrão de um 'boolean' é 'false'.
+  loggedIn:boolean;
+  userIcon="../../assets/user.png";
+  currentUser$:Observable<User>;
 
   constructor(
     private accountService:AccountService, 
@@ -23,17 +28,10 @@ export class NavComponent implements OnInit {
     this.currentUser$= this.accountService.currentUser$;
   }
 
-  model:any= {};
-  //-o valor padrão de um 'boolean' é 'false'.
-  loggedIn:boolean;
-
-  currentUser$:Observable<User>;
-
   login(){
     this.accountService.login(this.model)
     .subscribe({
       next: response => {
-        // console.log(response);
         this.router.navigateByUrl('/members');
         this.loggedIn= true;
       },
