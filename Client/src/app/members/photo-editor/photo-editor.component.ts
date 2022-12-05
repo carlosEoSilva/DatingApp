@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { take } from 'rxjs/operators';
 import { MembersService } from 'src/app/_services/members.service';
 import { Photo } from 'src/app/_models/photo';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-photo-editor',
@@ -16,11 +17,15 @@ import { Photo } from 'src/app/_models/photo';
 export class PhotoEditorComponent implements OnInit {
   @Input() member:Member|undefined;
   uploader:FileUploader|undefined;
+  user: User|undefined;
+  mainPhoto:Photo;
   hasBaseDropZoneOver= false;
   baseUrl= environment.apiUrl;
-  user: User|undefined;
 
-  constructor(private accountService:AccountService, private memberService:MembersService) { 
+  constructor(
+    private accountService:AccountService, 
+    private toastr:ToastrService,
+    private memberService:MembersService) { 
     this.accountService.currentUser$
     .pipe(take(1))
     .subscribe({
@@ -49,7 +54,7 @@ export class PhotoEditorComponent implements OnInit {
         if(this.user && this.member){
           this.user.photoUrl= photo.url;
           //-o usuário está sendo setado novamente para que os outros componentes também sejam atualizados.
-          // this.accountService.setCurrentUser(this.user);
+          this.accountService.setCurrentUser(this.user);
           this.member.photoUrl= photo.url;
           this.member.photos.forEach(p=>{
             if(p.isMain) p.isMain= false;
@@ -87,17 +92,20 @@ export class PhotoEditorComponent implements OnInit {
   
   }
 
-  deletePhoto(photoId:number){
-    this.memberService.deletePhoto(photoId).subscribe({
-      next:()=>{
-        if(this.member){
-          //-o '.filter' está retornando todos elementos exceto o que tiver o 'id' correspondente.
-          this.member.photos= this.member.photos.filter(x => x.id !== photoId);
+  deletePhoto(photoId:number, isMain:boolean){
+    if(isMain){
+       this.toastr.warning("The main photo can't be deleted!");
+    }
+    else{
+      this.memberService.deletePhoto(photoId).subscribe({
+        next:()=>{
+          if(this.member){
+            //-o '.filter' está retornando todos elementos exceto o que tiver o 'id' correspondente.
+            this.member.photos= this.member.photos.filter(x => x.id !== photoId);
+          }
         }
-      }
-    })
+      })
+    }
   }
-
-
 
 }

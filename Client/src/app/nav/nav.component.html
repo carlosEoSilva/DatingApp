@@ -25,7 +25,6 @@
       </ul>
 
         <div *ngIf="(currentUser$|async) as user" class="btn-group" dropdown>
-          <!-- <img src="{{user.photoUrl}}" alt="user photo"> -->
           <img [src]="user.photoUrl || userIcon" alt="user photo">
 
           <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-animated">

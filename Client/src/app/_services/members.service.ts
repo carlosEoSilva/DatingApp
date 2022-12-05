@@ -53,6 +53,7 @@ export class MembersService {
   }
 
   setMainPhoto(photoId:number){
+    //-o objeto vazio no final é porque é uma requisição 'put'.
     return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
   }
 

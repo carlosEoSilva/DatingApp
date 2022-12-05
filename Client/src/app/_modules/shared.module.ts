@@ -25,6 +25,13 @@ import { FileUploadModule } from 'ng2-file-upload';
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right',
       preventDuplicates: true,
+      iconClasses:{
+        error: 'toast-error',
+        info: 'toast-info',
+        success: 'toast-success',
+        warning: 'toast-warning',
+      },
+      progressBar:true,
       timeOut: 2000
     })
   ],

@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
     this.registerMode= !this.registerMode;
   }
 
-
   //-função para receber o valor enviado pelo componente filho.
   cancelRegisterMode(event:boolean){
     this.registerMode= event;
