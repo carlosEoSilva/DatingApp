@@ -1,26 +1,30 @@
-<div class="">
-    
-<form #registerForm (ngSubmit)="register()" class="text-center" autocomplete="off">
+<form [formGroup]="registerForm" (ngSubmit)="register()" class="text-center" autocomplete="off">
     <h2 class="text-center text-primary">Sign up</h2>
     <hr>
 
-    <div class="form-group">
-        <input name="username"  type="text" class="form-control" placeholder="Username"
-            [(ngModel)]="model.username">
-    </div>
+    <!-- todos os input's estão em um componente separado -->
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['username'])"
+        [label]="'Username'">
+    </app-text-input>
 
-    <div class="form-group">
-        <input name="password"  type="text" class="form-control" placeholder="Password"
-            [(ngModel)]="model.password">
-    </div>
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['password'])"
+        [type]="'text'"
+        [label]="'Password'">
+    </app-text-input>
 
-    <div class="form-group text-center">
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['confirmPassword'])"
+        [type]="'text'"
+        [label]="'Confirm Password'">
+    </app-text-input>
+
+    <div class="form-group text-center mt-3">
         <button class="btn btn-success" type="submit">Register</button>
         <button class="btn btn-warning" (click)="cancel()" type="submit">Cancel</button>
     </div>
 </form>
-
-</div>
 
 <!-- <div class="form-group">
     <label for="">Favorite user</label>
@@ -30,3 +34,39 @@
         </option>
     </select>
 </div> -->
+
+
+
+<!--//////////// form usando o 'FormTemplate' //////////////////////
+<div class="">
+    
+    <form #registerForm (ngSubmit)="register()" class="text-center" autocomplete="off">
+        <h2 class="text-center text-primary">Sign up</h2>
+        <hr>
+    
+        <div class="form-group">
+            <input name="username"  type="text" class="form-control" placeholder="Username"
+                [(ngModel)]="model.username">
+        </div>
+    
+        <div class="form-group">
+            <input name="password"  type="text" class="form-control" placeholder="Password"
+                [(ngModel)]="model.password">
+        </div>
+    
+        <div class="form-group text-center">
+            <button class="btn btn-success" type="submit">Register</button>
+            <button class="btn btn-warning" (click)="cancel()" type="submit">Cancel</button>
+        </div>
+    </form>
+    
+    </div> -->
+    
+    <!-- <div class="form-group">
+        <label for="">Favorite user</label>
+        <select class="form-control">
+            <option *ngFor="let user of usersFromHomeComponent" [value]="user">
+               {{user.userName}}
+            </option>
+        </select>
+    </div> -->

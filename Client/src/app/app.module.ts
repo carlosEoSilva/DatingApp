@@ -4,7 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
@@ -22,6 +22,7 @@ import { JwtInterceptor } from './_interceptor/jwt.interceptor';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { LoadingInterceptor } from './_interceptor/loading.interceptor';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { TextInputComponent } from './_forms/text-input/text-input.component';
 
 
 @NgModule({
@@ -39,17 +40,19 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     ServerErrorComponent,
     MemberCardComponent,
     MemberEditComponent,
-    PhotoEditorComponent
+    PhotoEditorComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     SharedModule
   ],
-  //-adicionar aos 'HTTP_INTERCEPTORS' a classe 'ErrorInterceptor', o parâmetro 'multi:true', 
+  //-adicionar nos 'HTTP_INTERCEPTORS' a classe 'ErrorInterceptor', o parâmetro 'multi:true', 
   //-é para que o interceptor seja adicionado aos que já existem, e não sobreescrevê-los.É possível usar vários interceptors.
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass:ErrorInterceptor,multi:true},
@@ -59,4 +62,3 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-//
