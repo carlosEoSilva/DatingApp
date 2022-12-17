@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* adicionar o css do datepicker no angular.json não funcionou, por isso fiz o import dele aqui */
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+
 .tab-panel {
     border: 1px solid #ddd;
     padding: 10px;

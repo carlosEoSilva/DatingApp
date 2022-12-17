@@ -24,6 +24,8 @@ namespace Api.Helpers
             //-nao entendi a ordem das classes...
             // CreateMap<AppUser, MemberUpdateDto>();
             CreateMap<MemberUpdateDto, AppUser>();
+
+            CreateMap<RegisterDto, AppUser>();
         }
     }
 }

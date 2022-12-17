@@ -4,6 +4,7 @@ using Api.Data;
 using Api.DTOs;
 using Api.Entities;
 using Api.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,18 +14,24 @@ namespace Api.Controllers
     {
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
+        private readonly IMapper _mapper;
 
-        public AccountController(DataContext context, ITokenService tokenService)
+        public AccountController(DataContext context, ITokenService tokenService, IMapper mapper)
         {
+            //-acessar o banco 
             _context= context;
+
+            //-acessar o token
             _tokenService= tokenService;
+            
+            //-???
+            _mapper = mapper;
         }
 
         [HttpPost("register")]
         //-quando os parâmetros são passados no 'body' da requisição, a função espera recebê-los como objetos.
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-
             if(await UserExists(registerDto.Username))
             {
                 //-o tipo 'ActionResult' dá acesso aos objetos com código http, o 'BadRequest' é um deles.
@@ -33,12 +40,19 @@ namespace Api.Controllers
 
             using var hmac= new HMACSHA512();
 
-            var user= new AppUser
-            {
-                UserName= registerDto.Username,
-                PasswordHash= hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                PasswordSalt= hmac.Key
-            };
+            //-aqui é criado uma nova instância de 'AppUser' usando as informações do 'registerDto'.
+            var user= _mapper.Map<AppUser>(registerDto);
+            user.UserName= registerDto.Username;
+            user.PasswordHash= hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            user.PasswordSalt= hmac.Key;
+
+            //-não preciso mais desta parte poque a instância de 'AppUser' vai ser criada usando o '_mapper'.
+            // var user= new AppUser
+            // {
+            //     UserName= registerDto.Username,
+            //     PasswordHash= hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
+            //     PasswordSalt= hmac.Key
+            // };
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -46,7 +60,8 @@ namespace Api.Controllers
             return new UserDto
             {
                 Username= user.UserName,
-                Token= _tokenService.CreateToken(user)
+                Token= _tokenService.CreateToken(user),
+                KnownAs= user.KnownAs
             };
         }
 
@@ -55,8 +70,7 @@ namespace Api.Controllers
         {
             //-foi usado o 'SingleOrDefaultAsync' porque 'UserName' não é chave primária.
             //-o '.Include' é para fazer a junção com as tabelas relacionadas e adicionar o resultado na resposta da query.
-            var user= 
-                await _context.Users
+            var user= await _context.Users
                 .Include(p => p.Photos)
                 .SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
 
@@ -83,7 +97,8 @@ namespace Api.Controllers
             {
                 Username= user.UserName,
                 Token= _tokenService.CreateToken(user),
-                PhotoUrl= user.Photos.FirstOrDefault(x=> x.IsMain)?.Url
+                PhotoUrl= user.Photos.FirstOrDefault(x=> x.IsMain)?.Url,
+                KnownAs= user.KnownAs
             };
         }
 

@@ -1,11 +1,44 @@
-<form [formGroup]="registerForm" (ngSubmit)="register()" class="text-center" autocomplete="off">
+<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" class="text-center" autocomplete="off">
     <h2 class="text-center text-primary">Sign up</h2>
     <hr>
+
+    <div class="mb-3">
+        <label style="margin-right:10px;">I am a :</label>
+
+        <label class="form-check-label ms-1">
+            <input type="radio" class="form-check-input mt-1" value="male" formControlName="gender"> Male
+        </label>
+
+        <label class="form-check-label ms-3">
+            <input type="radio" class="form-check-input mt-1" value="female" formControlName="gender"> Female
+        </label>
+    </div> 
 
     <!-- todos os input's estão em um componente separado -->
     <app-text-input 
         [formControl]="$any(registerForm.controls['username'])"
         [label]="'Username'">
+    </app-text-input>
+
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['knownas'])"
+        [label]="'Known As'">
+    </app-text-input>
+
+    <app-date-picker 
+        [formControl]="$any(registerForm.controls['dateOfBirth'])"
+        [label]="'Date of Birth'"
+        [maxDate]="maxDate">
+    </app-date-picker>
+
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['city'])"
+        [label]="'City'">
+    </app-text-input>
+
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['country'])"
+        [label]="'Country'">
     </app-text-input>
 
     <app-text-input 
@@ -20,9 +53,17 @@
         [label]="'Confirm Password'">
     </app-text-input>
 
-    <div class="form-group text-center mt-3">
-        <button class="btn btn-success" type="submit">Register</button>
-        <button class="btn btn-warning" (click)="cancel()" type="submit">Cancel</button>
+    <div class="row" *ngIf="validationErrors">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-group text-center mt-3" style="margin-bottom: 50px;">
+        <button [disabled]="!registerForm.valid" class="btn btn-success" type="submit">Register</button>
+        <button class="btn btn-warning mb-10" (click)="cancel()" type="submit">Cancel</button>
     </div>
 </form>
 

@@ -8,6 +8,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { FileUploadModule } from 'ng2-file-upload';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 //-não esquecer de exportar os módulos que forem ser usados.
 
@@ -22,6 +23,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     TooltipModule.forRoot(),
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right',
       preventDuplicates: true,
@@ -41,6 +43,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     TabsModule,
     NgxGalleryModule,
     NgxSpinnerModule,
+    BsDatepickerModule,
     FileUploadModule
   ]
 })

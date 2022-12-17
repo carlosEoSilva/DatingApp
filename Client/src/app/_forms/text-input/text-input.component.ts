@@ -16,14 +16,12 @@ export class TextInputComponent implements ControlValueAccessor {
   }
 
   writeValue(obj: any): void { }
-
   registerOnChange(fn: any): void { }
-
   registerOnTouched(fn: any): void { }
 
   //-casting para corrigir algum erro no template html.
   get control():FormControl{
-    return this.ngControl.control as FormControl
+    return this.ngControl.control as FormControl;
   }
 
 }
