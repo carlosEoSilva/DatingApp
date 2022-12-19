@@ -9,6 +9,7 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { FileUploadModule } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 //-não esquecer de exportar os módulos que forem ser usados.
 
@@ -23,6 +24,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     TooltipModule.forRoot(),
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
+    PaginationModule.forRoot(),
     BsDatepickerModule.forRoot(),
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right',
@@ -40,6 +42,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
   exports:[
     BsDropdownModule,
     ToastrModule,
+    PaginationModule,
     TabsModule,
     NgxGalleryModule,
     NgxSpinnerModule,

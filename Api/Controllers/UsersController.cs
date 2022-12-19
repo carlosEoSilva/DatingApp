@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Api.Entities;
+using Api.Helpers;
 
 namespace Api.Controllers
 {
@@ -26,14 +27,17 @@ namespace Api.Controllers
         [HttpGet]
         //-método que será executado quando for feito um 'get' no endpoint do controller.
         //-o retorno de um controller sempre deve ser do tivo 'ActionResult'.
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
             //-converter para 'List' as informações que o '_context' buscou na tabela 'Users'.
             // var users= await _userRepository.GetUsersAsync();
             // var usersToReturn= _mapper.Map<IEnumerable<MemberDto>>(users);
             // return Ok(usersToReturn);
 
-            var users= await _userRepository.GetMembersAsync();
+            var users= await _userRepository.GetMembersAsync(userParams);
+
+            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages));
+
             return Ok(users);
         }
 
