@@ -1,2 +1,8 @@
-- o contrutor de um componente é executado antes do NgOnInit.
+-o contrutor de um componente é executado antes do NgOnInit.
+
+-o spinner do loading está no app.componente.html
+
+-quando estiver trabalhando com 'form' é obrigatório os inputs terem um 'name'
+
+1- o 'router-outlet' será substituído pelo conteúdo de alguma rota.
 

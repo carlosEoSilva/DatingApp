@@ -26,13 +26,23 @@ namespace Api.Controllers
 
         [HttpGet]
         //-método que será executado quando for feito um 'get' no endpoint do controller.
-        //-o retorno de um controller sempre deve ser do tivo 'ActionResult'.
+        //-o retorno de um controller sempre deve ser do tipo 'ActionResult'.
         public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
+            /* 
             //-converter para 'List' as informações que o '_context' buscou na tabela 'Users'.
-            // var users= await _userRepository.GetUsersAsync();
-            // var usersToReturn= _mapper.Map<IEnumerable<MemberDto>>(users);
-            // return Ok(usersToReturn);
+            var users= await _userRepository.GetUsersAsync();
+            var usersToReturn= _mapper.Map<IEnumerable<MemberDto>>(users);
+            return Ok(usersToReturn);
+            */
+
+            var currentUser= await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+            userParams.CurrentUsername= currentUser.UserName;
+
+            if(string.IsNullOrEmpty(userParams.Gender))
+            {
+                userParams.Gender= currentUser.Gender == "male" ? "female" : "male";
+            }
 
             var users= await _userRepository.GetMembersAsync(userParams);
 
