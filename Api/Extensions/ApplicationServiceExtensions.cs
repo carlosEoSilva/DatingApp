@@ -19,7 +19,6 @@ namespace Api.Extensions
             services.AddScoped<IPhotoService, PhotoService>();
 
             //-Primeira abordagem
-            // services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             //-o 'config.Getsection' busca a configuração do campo 'CloudinarySettings' no arquivo 'appsettings.json'.
@@ -33,6 +32,9 @@ namespace Api.Extensions
                 //-busca o valor de 'DefaultConnection' dentro do arquivo 'appsettings.Development.json'.
                 options.UseSqlite(config.GetConnectionString("DefaultConnection"));
             });
+
+            //-registrar atividades do usuário
+            services.AddScoped<LogUserActivity>();
 
             return services;
         }

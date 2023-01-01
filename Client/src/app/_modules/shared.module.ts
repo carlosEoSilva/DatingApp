@@ -10,6 +10,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { FileUploadModule } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+// import { MomentModule } from 'ngx-moment';
 
 //-não esquecer de exportar os módulos que forem ser usados.
 
@@ -25,7 +27,9 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot(),
+    ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    // MomentModule.forRoot(),
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right',
       preventDuplicates: true,
@@ -47,6 +51,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     NgxGalleryModule,
     NgxSpinnerModule,
     BsDatepickerModule,
+    ButtonsModule,
+    // MomentModule,
     FileUploadModule
   ]
 })

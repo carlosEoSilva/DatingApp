@@ -1,8 +1,21 @@
--o contrutor de um componente é executado antes do NgOnInit.
+- o contrutor de um componente é executado antes do NgOnInit.
 
--o spinner do loading está no app.componente.html
+- o spinner do loading está no app.componente.html
 
--quando estiver trabalhando com 'form' é obrigatório os inputs terem um 'name'
+- quando estiver trabalhando com 'form' é obrigatório os inputs terem um 'name'
+
+- o .subscribe pode estar vazio, mas sem ele não acontece nada.
+    // this.accountService.register(this.model)
+    // .subscribe({});
+
+- o pacote usado para calcular quanto tempo da última vez que o usuário logou, é o 
+    'ngx-timeago'.
 
 1- o 'router-outlet' será substituído pelo conteúdo de alguma rota.
+
+2- o '@Output' é para enviar valores para componetes pais.
+
+3- o '@Input' é usado para receber valores de componentes filhos.
+
+4- 
 

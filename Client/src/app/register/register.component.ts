@@ -7,10 +7,10 @@ import { AccountService } from '../_services/account.service';
 @Component({selector: 'app-register',templateUrl: './register.component.html',styleUrls: ['./register.component.css']})
 
 export class RegisterComponent implements OnInit {
-  //-o input é usado para receber valores de componentes filhos.
+  //-3 
   //-@Input() usersFromHomeComponent:any;
 
-  //-o output é para enviar valores para componetes pais.
+  //-2 
   @Output() cancelRegister= new EventEmitter();
   registerForm:FormGroup= new FormGroup({});
   maxDate:Date= new Date();
@@ -41,10 +41,6 @@ export class RegisterComponent implements OnInit {
         this.validationErrors= error;
       }
     });
-
-    //-o .subscribe pode estar vazio, mas sem ele não acontece nada.
-    // this.accountService.register(this.model)
-    // .subscribe({});
   }
 
   cancel(){
