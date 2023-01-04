@@ -8,7 +8,7 @@
     // this.accountService.register(this.model)
     // .subscribe({});
 
-- o pacote usado para calcular quanto tempo da última vez que o usuário logou, é o 
+- o pacote usado para calcular o tempo da última vez que o usuário logou, é o 
     'ngx-timeago'.
 
 1- o 'router-outlet' será substituído pelo conteúdo de alguma rota.
@@ -17,5 +17,24 @@
 
 3- o '@Input' é usado para receber valores de componentes filhos.
 
-4- 
+4- nesta linha podemos visualizar os parâmetros que estão sendo passados na URL
+atravéz do objeto 'userParams'.
+
+5- usando o construtor 'Map()' temos acesso a métodos como 'get' e 'set'.
+
+6- verifica se a mesma requisição já foi feita antes, o valor armazenado em 'response' é uma requisição 
+com os parâmetros 'userParams'.
+
+7- neste ponto a requisição está sendo armazenada no 'cache' para ser usada novamente depois caso
+seja feito uma requisição com os mesmos parâmetros, o 'membersCache' irá armazenar todas as 
+requisições feitas.
+
+8- o 'memberCache' é um objeto, sendo cada propriedade o retorno da api contendo dos usuários,
+usando o '...' este objeto é transformado em um array. Dentro do 'reduce' todos os elementos do 'memberCache'
+estão sendo transformados em um único 'array'. E por fim o 'find' retorna apenas o elemento com as informações
+do usuário que foi clicado.
+
+const member= [...this.memberCache.values()]
+      .reduce((arr, elem) => arr.concat(elem.result), [])
+      .find((member:Member) => member.userName === username);
 

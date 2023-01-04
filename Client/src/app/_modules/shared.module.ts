@@ -11,7 +11,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-// import { MomentModule } from 'ngx-moment';
+import { TimeagoModule } from 'ngx-timeago';
 
 //-não esquecer de exportar os módulos que forem ser usados.
 
@@ -29,7 +29,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    // MomentModule.forRoot(),
+    TimeagoModule.forRoot(),
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right',
       preventDuplicates: true,
@@ -52,7 +52,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     NgxSpinnerModule,
     BsDatepickerModule,
     ButtonsModule,
-    // MomentModule,
+    TimeagoModule,
     FileUploadModule
   ]
 })
