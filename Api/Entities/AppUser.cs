@@ -1,6 +1,3 @@
-
-using Api.Extensions;
-
 namespace Api.Entities
 {
     public class AppUser
@@ -21,10 +18,8 @@ namespace Api.Entities
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
 
-        // public int GetAge()
-        // {
-        //     return DateOfBirth.CalculateAge();
-        // }
-
+        //-relação de muitos para muitos
+        public List<UserLike> LikedByUsers{ get; set; }
+        public List<UserLike> LikedUsers{ get; set; }
     }
 }

@@ -1,8 +1,0 @@
-1- esta classe é usada para registrar a data e hora que o usuário realizou alguma ação na aplicação,
-o 'ActionExecutingContext' é o contexto de execução do método que no caso é 'HttpContext'
-o 'ActionExecutingContext' permite realizar ações antes ou depois que o endpoint da API tenha
-realizado sua função. Precisa ser incluído no 'ApplicationServiceExtensions.cs'.
-
-2- é dessa forma que se define um 'ServiceFilter'.
-
-3- o token foi alterado para conter o ID e o nome de usuário.

@@ -1,0 +1,23 @@
+1- esta classe é usada para registrar a data e hora que o usuário realizou alguma ação na aplicação,
+o 'ActionExecutingContext' é o contexto de execução do método que no caso é 'HttpContext'
+o 'ActionExecutingContext' permite realizar ações antes ou depois que o endpoint da API tenha
+realizado sua função. Precisa ser incluído no 'ApplicationServiceExtensions.cs'.
+
+2- é dessa forma que se define um 'ServiceFilter'.
+
+3- o token foi alterado para conter o ID e o nome de usuário.
+
+4- Configuração do EntityFramework para realizar uma relação de muitos-para-muitos
+e 'delete on cascade'.
+
+5- os dbContext e repositórios são incluídos aqui.
+
+6- os parâmetros passados no '.FindAsync' são uma chave primária composta
+    _context.Likes.FindAsync(sourceUserId, targetUserId);
+
+7- quando o '.AsQueryable()' é usado, nenhuma ação é realizada, isso apenas cria uma
+declaração da consulta que irá ser realizada.
+
+8- o '.Select()' serve para projetar o resultado da busca em um objeto, ou seja,
+ele está preenchendo um objeto.
+

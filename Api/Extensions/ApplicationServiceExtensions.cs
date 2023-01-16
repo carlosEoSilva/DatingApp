@@ -10,6 +10,8 @@ namespace Api.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
+            //-5
+            
             services.AddCors();
 
             services.AddScoped<ITokenService, TokenService>();
@@ -17,6 +19,8 @@ namespace Api.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<IPhotoService, PhotoService>();
+
+            services.AddScoped<ILikesRepository, LikesRepository>();
 
             //-Primeira abordagem
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

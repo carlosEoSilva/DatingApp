@@ -1,0 +1,8 @@
+SESSAO 13
+1- How to implement pagination on the API and Client
+2- Deferred Execution using IQueryable
+3- How to implement filtering on the API and Client
+4- How to implement sorting on the API and Client
+5- Using Action Filters
+6- Adding a TimeAgo pipe
+7- Implement caching in the client for paginated resources
