@@ -22,6 +22,8 @@ namespace Api.Extensions
 
             services.AddScoped<ILikesRepository, LikesRepository>();
 
+            services.AddScoped<IMessageRepository, MessageRepository>();
+
             //-Primeira abordagem
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

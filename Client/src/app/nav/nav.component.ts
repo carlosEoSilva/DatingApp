@@ -50,7 +50,7 @@ export class NavComponent implements OnInit {
   test(){
     this.currentUser$.subscribe({
       next:(user)=>{
-        console.log(user);
+        // console.log(user);
       }
     })
   }

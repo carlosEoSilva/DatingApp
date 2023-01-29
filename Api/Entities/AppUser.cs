@@ -21,5 +21,10 @@ namespace Api.Entities
         //-relação de muitos para muitos
         public List<UserLike> LikedByUsers{ get; set; }
         public List<UserLike> LikedUsers{ get; set; }
+
+        //-relação de muitos para muitos
+        public List<Message> MessagesSent { get; set; }
+        public List<Message> MessagesReceived { get; set; }
+        
     }
 }

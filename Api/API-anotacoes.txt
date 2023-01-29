@@ -21,3 +21,14 @@ declaração da consulta que irá ser realizada.
 8- o '.Select()' serve para projetar o resultado da busca em um objeto, ou seja,
 ele está preenchendo um objeto.
 
+9- criação das tabelas no banco.
+
+10- a classe informada dentro do tipo do 'DbSet' é a classe que será usada para criar a tabela no banco,
+o nome da propriedade é o nome da tabela que será criada, neste caso temos a classe 'AppUser' que será usada
+para criar a tabela 'Users'
+    public DbSet<AppUser> Users { get; set; }
+
+11- configuração da relação de muito-para-muitos das tabelas de like e de mensagens.
+
+12- o 'Messages' é o nome da tabela dentro do DbContext.
+    _context.Messages.Add(message);

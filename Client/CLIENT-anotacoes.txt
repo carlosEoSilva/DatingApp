@@ -40,3 +40,28 @@ const member= [...this.memberCache.values()]
 
 9- para receber um valor de um componente pai, tenho que usar o decorator '@Input()'
 @Input() member:Member;
+
+10- para que o 'ViewChild' funcione é necessário uma variável template para referenciar o 
+elemento que irá receber as informações.
+
+11- o '@ViewChild' é para que o componente pai, possa se comunicar com o componente filho,
+é necessário que o componente filho tenha uma variável template para referenciá-lo.
+
+12- adicionando um parâmetro na query
+    [queryParams]="{tab:'Messages'}"
+Ex: https://localhost:4200/members/ruthie?tab=Messages
+
+13- o resolver permite ter acesso as informações que serão carregadas pelo componente antes do
+componente ser carregado.
+
+14- o 'Resolve' é do tipo 'Member' porque a informação que quero acessar são as propriedades do 'Member'
+
+15- o resolver precisa ser informado no 'app-routing.module'.
+
+16- acessar a informação do 'resolver' atravéz da rota.
+
+17- faz com que o botão do link fique ativado apenas se for realmente clicado
+    [routerLinkActiveOptions]="{exact:true}"
+
+18- o '$event.stopPropagation()' é para que o o botão não herde o evento de clique que leva acontece
+perfil do usuário que enviou a mensagem.
