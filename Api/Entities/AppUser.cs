@@ -1,11 +1,14 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace Api.Entities
 {
-    public class AppUser
+    public class AppUser:IdentityUser<int>
     {
-        public int Id { get; set; }   
-        public string UserName { get; set; } 
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
+        //- estes campos não são mais necessários por causa do 'IdentityUser'
+        // public int Id { get; set; }   
+        // public string UserName { get; set; } 
+        // public byte[] PasswordHash { get; set; }
+        // public byte[] PasswordSalt { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime Created { get; set; }= DateTime.UtcNow;
         public DateTime LastActive { get; set; }= DateTime.UtcNow;
@@ -25,6 +28,8 @@ namespace Api.Entities
         //-relação de muitos para muitos
         public List<Message> MessagesSent { get; set; }
         public List<Message> MessagesReceived { get; set; }
+
+        public ICollection<AppUserRole> UserRoles { get; set; }
         
     }
 }
