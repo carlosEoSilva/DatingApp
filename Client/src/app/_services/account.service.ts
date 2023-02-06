@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UrlSegment } from '@angular/router';
 import { map, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
@@ -47,6 +48,9 @@ export class AccountService {
   }
 
   setCurrentUser(user:User){
+    user.roles= [];
+    const roles= this.getDecodedToken(user.token).role;
+    Array.isArray(roles) ? user.roles= roles : user.roles.push(roles);
     //-o 'user' é o nome da chave que será armazenada no localStorage, o valor da chave é JSON.stringify(user).
     localStorage.setItem('user', JSON.stringify(user));
     //-armazenar no buffer o usuário logado.
@@ -56,6 +60,10 @@ export class AccountService {
   logout(){
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+  }
+
+  getDecodedToken(token:string){
+    return JSON.parse(atob(token.split('.')[1]))
   }
 
 }

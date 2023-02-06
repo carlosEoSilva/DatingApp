@@ -65,3 +65,5 @@ componente ser carregado.
 
 18- o '$event.stopPropagation()' é para que o o botão não herde o evento de clique que leva acontece
 perfil do usuário que enviou a mensagem.
+
+19- por ser 'post' na requisição com segundo parâmetro precisa passar o '{}'. 

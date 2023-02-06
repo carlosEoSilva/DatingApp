@@ -12,6 +12,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TimeagoModule } from 'ngx-timeago';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 //-não esquecer de exportar os módulos que forem ser usados.
 
@@ -30,6 +31,7 @@ import { TimeagoModule } from 'ngx-timeago';
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
     TimeagoModule.forRoot(),
+    ModalModule.forRoot(),
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right',
       preventDuplicates: true,
@@ -53,7 +55,8 @@ import { TimeagoModule } from 'ngx-timeago';
     BsDatepickerModule,
     ButtonsModule,
     TimeagoModule,
-    FileUploadModule
+    FileUploadModule,
+    ToastrModule
   ]
 })
 export class SharedModule { }

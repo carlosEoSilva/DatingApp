@@ -24,6 +24,9 @@ namespace Api.Controllers
             _userRepository = userRepository;
         }
 
+        //-17
+        //[Authorize(Roles = "Admin")]
+
         [HttpGet]
         //-método que será executado quando for feito um 'get' no endpoint do controller.
         //-o retorno de um controller sempre deve ser do tipo 'ActionResult'.
@@ -51,6 +54,9 @@ namespace Api.Controllers
             return Ok(users);
         }
 
+        //-17
+        // [Authorize(Roles ="Member")]
+        
         //-fazer um 'get' passando parâmetros na url.
         //-o 'async Task<>' torna a função assíncrona, o retorno sempre deve ter o 'await'.
         [HttpGet("{username}")]

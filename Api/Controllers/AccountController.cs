@@ -56,11 +56,13 @@ namespace Api.Controllers
             var result= await _userManager.CreateAsync(user, registerDto.Password);
 
             if(!result.Succeeded) return BadRequest(result.Errors);
+
+            var roleResult= await _userManager.AddToRoleAsync(user, "Member");
             
             return new UserDto
             {
                 Username= user.UserName,
-                Token= _tokenService.CreateToken(user),
+                Token= await _tokenService.CreateToken(user),
                 KnownAs= user.KnownAs,
                 Gender= user.Gender
             };
@@ -87,7 +89,7 @@ namespace Api.Controllers
             return new UserDto
             {
                 Username= user.UserName,
-                Token= _tokenService.CreateToken(user),
+                Token= await _tokenService.CreateToken(user),
                 PhotoUrl= user.Photos.FirstOrDefault(x=> x.IsMain)?.Url,
                 KnownAs= user.KnownAs,
                 Gender= user.Gender

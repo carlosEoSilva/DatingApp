@@ -1,3 +1,13 @@
+Recriar o banco de dados
+
+-o migrations tem que ser criado antes de executar o projeto, é nessa hora que o banco é criado usando as informações do migrations.
+
+-apagar o banco 
+dotnet ef database drop
+
+-depois que o migration estiver criado é só executar o projeto
+dtonet watch run
+
 1- esta classe é usada para registrar a data e hora que o usuário realizou alguma ação na aplicação,
 o 'ActionExecutingContext' é o contexto de execução do método que no caso é 'HttpContext'
 o 'ActionExecutingContext' permite realizar ações antes ou depois que o endpoint da API tenha
@@ -32,3 +42,24 @@ para criar a tabela 'Users'
 
 12- o 'Messages' é o nome da tabela dentro do DbContext.
     _context.Messages.Add(message);
+	
+13- quando herdamos da classe 'IdentityUser' por padrão ela já contém os campos de Id, UserName, PasswordHash. Porém estes campos são do tipo 'string' e para usá-los como 'int' é só informar dentro do <>
+	IdentityUser<int>
+	
+14- o 'IdentityDbContext' ja possui por padrão a propriedade 'User'.
+
+15- as classes são informadas como tipos do IdentityDbContext para que possam ser usadas com os Id's do tipo 'int'.
+
+16- configurando os 'roles'(permissões) dos usuários e suas senhas.
+
+17- é uma forma de restringir o acesso à rota conforme o nível de acesso do usuário logado.
+
+18- as permissões foram configuradas em 'IdentityServiceExtensions'.
+
+19- 
+
+
+
+
+
+
