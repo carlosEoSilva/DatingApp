@@ -2,6 +2,7 @@ using Api.Data;
 using Api.Helpers;
 using Api.Interfaces;
 using Api.Services;
+using Api.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Extensions
@@ -24,6 +25,8 @@ namespace Api.Extensions
 
             services.AddScoped<IMessageRepository, MessageRepository>();
 
+            services.AddSignalR();
+
             //-Primeira abordagem
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -41,6 +44,9 @@ namespace Api.Extensions
 
             //-registrar atividades do usuário
             services.AddScoped<LogUserActivity>();
+
+            //-24
+            services.AddSingleton<PresenceTracker>();
 
             return services;
         }

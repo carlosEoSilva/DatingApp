@@ -56,8 +56,20 @@ para criar a tabela 'Users'
 
 18- as permissões foram configuradas em 'IdentityServiceExtensions'.
 
-19- 
+19- o signalR é um serviço, não esquecer de adicioná-lo no 'ApplicationServiceExtensions.cs', também é necessário configurar um 'endpoint' em 'startup.cs'
 
+20- essa parte é para que o signalR possar ser autenticado.
+
+21- o '.AllowCredencials()' é para que o signalR possa ser autenticado no servidor.
+
+22- está sendo criado um dicionário para armazenar o nome de usuário e suas 'connection strings', para cada dispositivo diferente que o usuário se logar ele receberá uma 'connection string' diferente.
+>Dictionary<string, List<string>>
+
+23- o 'lock' inpede que o dicionário 'OnlineUsers' seja acessado até terminar as instruções dentro do bloco
+>lock(OnlineUsers)
+
+24- aqui foi usado o 'AddSingleton' para que o serviço permaneça ativo enquanto a aplicação estiver sendo executada.
+>services.AddSingleton<PresenceTracker>
 
 
 

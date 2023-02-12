@@ -4,13 +4,14 @@ import { UrlSegment } from '@angular/router';
 import { map, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
+import { PresenceService } from './presence.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private presenceService:PresenceService) { }
 
   //-a 'baseUrl' foi definida no arquivo 'environment.ts'.
   baseUrl= environment.apiUrl;
@@ -55,11 +56,17 @@ export class AccountService {
     localStorage.setItem('user', JSON.stringify(user));
     //-armazenar no buffer o usuário logado.
     this.currentUserSource.next(user);
+
+    //-iniciar o signalR
+    this.presenceService.createHubConnection(user);
   }
 
   logout(){
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+
+    //-encerrar o signalR
+    this.presenceService.stopHubConnection();
   }
 
   getDecodedToken(token:string){
