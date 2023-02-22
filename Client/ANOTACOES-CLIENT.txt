@@ -71,3 +71,7 @@ perfil do usuário que enviou a mensagem.
 20- para usar o signalR no front-end, precisa instalr o pacote '@microsoft/signalr' 
 
 21- o métodos "UserIsOnline" e "UserIsOffline" são definidos no 'PresenceHub.cs'
+
+22- os métodos invocados usando o 'hubConnection' foram criados no 'MessageHub.cs'.
+
+23- 
