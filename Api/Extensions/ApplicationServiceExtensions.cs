@@ -17,13 +17,10 @@ namespace Api.Extensions
 
             services.AddScoped<ITokenService, TokenService>();
 
-            services.AddScoped<IUserRepository, UserRepository>();
-
             services.AddScoped<IPhotoService, PhotoService>();
 
-            services.AddScoped<ILikesRepository, LikesRepository>();
-
-            services.AddScoped<IMessageRepository, MessageRepository>();
+            //-27
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddSignalR();
 

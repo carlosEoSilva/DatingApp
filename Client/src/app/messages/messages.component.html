@@ -2,7 +2,7 @@
     <div class="btn-group" name="container">
         <button 
             class="btn btn-primary"
-            brnRadio="Unread"
+            btnRadio="Unread"
             [(ngModel)]="container"
             (click)="loadMessages()">
             Unread
@@ -10,7 +10,7 @@
         
         <button 
             class="btn btn-primary"
-            brnRadio="Inbox"
+            btnRadio="Inbox"
             [(ngModel)]="container"
             (click)="loadMessages()">
             Inbox
@@ -18,7 +18,7 @@
         
         <button 
             class="btn btn-primary"
-            brnRadio="Outbox"
+            btnRadio="Outbox"
             [(ngModel)]="container"
             (click)="loadMessages()">
             Outbox
@@ -43,20 +43,24 @@
 
         <tbody class="align-middle">
             <tr [hidden]="loading" *ngFor="let message of messages"
-                routerLink="{{container === 'Outbox'}}
-                            ? '/members/' + message.recipientUsername
-                            : '/members/ + message.senderPhotoUrl'"
-                [queryParams]="{tab:'Messages'}">
+                routerLink="{{container === 'Outbox' 
+                    ? '/members/' + message.recipientUsername 
+                    : '/members/' + message.senderUsername}}"
+                [queryParams]="{tab: 'Messages'}">
+
                 <td>{{message.content}}</td>
+                
                 <td>
+                    <!-- Outbox -->
                     <div *ngIf="container === 'Outbox'">
                         <img 
                             class="img-circle rounded-circle me-2"
-                            src="{{message.recipientPhotUrl || '.assets/user.png'}}" 
+                            src="{{message.recipientPhotoUrl || '../assets/user.png'}}" 
                             alt="recipient photo"> 
                         <strong>{{message.recipientUsername | titlecase}}</strong>
                     </div>
                     
+                    <!-- Inbox -->
                     <div *ngIf="container !== 'Outbox'">
                         <img 
                             src="{{message.senderPhotUrl || '../assets/user.png'}}" 
@@ -69,7 +73,10 @@
                 <td>{{message.messageSent | timeago}}</td>
                 <td>
                     <!-- 18 -->
-                    <button (click)="$event.stopPropagation()" (click)="deleteMessage(message.id)" class="btn btn-danger">Delete</button>
+                    <button (click)="$event.stopPropagation()" 
+                        (click)="deleteMessage(message.id)" 
+                        class="btn btn-danger">
+                        Delete</button>
                 </td>
             </tr>
         </tbody>

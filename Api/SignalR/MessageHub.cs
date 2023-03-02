@@ -15,15 +15,11 @@ namespace Api.SignalR
         public IUserRepository _userRepository { get; }
         private IMapper _mapper;
         private readonly IHubContext<PresenceHub> _presenceHub;
+        private readonly IUnitOfWork _uow;
 
-        public MessageHub(
-            IMessageRepository messageRepository, 
-            IUserRepository userRepository,
-            IMapper mapper,
-            IHubContext<PresenceHub>presenceHub)
+        public MessageHub(IUnitOfWork uow, IMapper mapper, IHubContext<PresenceHub>presenceHub)
         {
-            _messageRepository = messageRepository;
-            _userRepository= userRepository;
+            _uow= uow;
             _mapper= mapper;
             _presenceHub= presenceHub;
         }
@@ -40,6 +36,8 @@ namespace Api.SignalR
             await Clients.Group(groupName).SendAsync("UpdatedGroup", group);
 
             var messages= await _messageRepository.GetMessageThread(Context.User.GetUsername(), otherUser);
+
+            if(_uow.HasChanges()) await _uow.Complete();
 
             await Clients.Caller.SendAsync("ReceiveMessageThread", messages);
         }
@@ -93,7 +91,7 @@ namespace Api.SignalR
 
             _messageRepository.AddMessage(message);
 
-            if(await _messageRepository.SaveAllAsync())
+            if(await _uow.Complete())
             {
                 await Clients.Group(groupName).SendAsync("NewMessage", _mapper.Map<MessageDto>(message));
             }
@@ -118,7 +116,7 @@ namespace Api.SignalR
 
             group.Connections.Add(connection);
 
-            if(await _messageRepository.SaveAllAsync())
+            if(await _uow.Complete())
                 return group;
 
             throw new HubException("Failed to add group");
@@ -130,7 +128,7 @@ namespace Api.SignalR
             var connection= group.Connections.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
             _messageRepository.RemoveConnection(connection);
 
-            if(await _messageRepository.SaveAllAsync())
+            if(await _uow.Complete())
                 return group;
 
             throw new HubException("Failed to remove from group");

@@ -72,6 +72,6 @@ perfil do usuário que enviou a mensagem.
 
 21- o métodos "UserIsOnline" e "UserIsOffline" são definidos no 'PresenceHub.cs'
 
-22- os métodos invocados usando o 'hubConnection' foram criados no 'MessageHub.cs'.
+22- o 'async' é para garantir que o método retorne uma 'promise' mesmo que seja o retorno padrão do método.
 
-23- 
+23- o 'changeDetection' é para alterar a forma que o angular detecta as alterações feitas no componente, é possível configurar para que ele faça a detecção só uma vez.

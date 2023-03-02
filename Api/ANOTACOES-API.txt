@@ -71,6 +71,14 @@ para criar a tabela 'Users'
 24- aqui foi usado o 'AddSingleton' para que o serviço permaneça ativo enquanto a aplicação estiver sendo executada.
 >services.AddSingleton<PresenceTracker>
 
+25- se o salvamento for realizado com sucesso o '.SaveChangesAsync()' retorna 1, senão retorna 0, a verificação de '> 0' é para converter a resposta em boolenano.
+
+26- o '.ChangeTracker.HasChanges()' é para verificar se o entity framework está monitorando alguma mudança no contexto.
+
+27- o 'UnitOfWork' substitui a injeção dos repositórios User, Likes, Messages.
+
+28- 
+
 
 
 

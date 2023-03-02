@@ -35,6 +35,9 @@ export class NavComponent implements OnInit {
       next: response => {
         this.router.navigateByUrl('/members');
         this.loggedIn= true;
+
+        //-esta linha é para limpar os campos de login quando o usuário fizer logout
+        // this.model= {};
       },
       error: error => {
         console.error(error);
